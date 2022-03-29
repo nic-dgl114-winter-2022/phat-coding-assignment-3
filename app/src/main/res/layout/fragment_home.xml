@@ -58,7 +58,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    Select land-->
     <ImageView
         android:id="@+id/green_land_1"
         android:layout_width="90dp"
@@ -69,18 +68,6 @@
         app:layout_constraintEnd_toStartOf="@id/green_land_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/green_land_2" />
-
-    <ImageView
-        android:id="@+id/select_land_1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="16dp"
-        android:src="@drawable/select_land"
-        app:layout_constraintBottom_toBottomOf="@id/green_land_2"
-        app:layout_constraintEnd_toStartOf="@id/green_land_2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/green_land_2" />
-    <!--    End Select land-->
 
     <!--    Land with fruit -->
     <ImageView
@@ -149,6 +136,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/property_layout" />
+
+    <ImageView
+        android:id="@+id/fruit_image_land_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/apple"
+        app:layout_constraintEnd_toEndOf="@+id/green_land_5"
+        app:layout_constraintStart_toStartOf="@id/green_land_5"
+        app:layout_constraintTop_toTopOf="@+id/green_land_5" />
 
     <ImageView
         android:id="@+id/green_land_6"
