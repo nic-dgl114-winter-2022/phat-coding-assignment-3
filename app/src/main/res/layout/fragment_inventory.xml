@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.InventoryFragment">
 
+    <Button
+        android:id="@+id/add_fruit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Fruit"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/inventory_recycler_view"
         android:layout_width="match_parent"
