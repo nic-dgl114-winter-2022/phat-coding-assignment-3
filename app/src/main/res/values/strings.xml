@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">phat-coding-assignment-3</string>
+    <string name="factory">Factory</string>
+    <string name="inventory">Inventory</string>
 </resources>
