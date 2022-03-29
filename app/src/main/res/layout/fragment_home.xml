@@ -58,76 +58,143 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--  Lands  -->
+
+    <!-- Strawberry -->
     <ImageView
-        android:id="@+id/green_land_1"
+        android:id="@+id/land_1"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
-        app:layout_constraintBottom_toBottomOf="@id/green_land_2"
-        app:layout_constraintEnd_toStartOf="@id/green_land_2"
+        app:layout_constraintBottom_toBottomOf="@id/land_2"
+        app:layout_constraintEnd_toStartOf="@id/land_2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/green_land_2" />
+        app:layout_constraintTop_toTopOf="@id/land_2" />
 
-    <!--    Land with fruit -->
     <ImageView
-        android:id="@+id/green_land_2"
+        android:id="@+id/strawberry_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/strawberry"
+        app:layout_constraintEnd_toEndOf="@+id/land_1"
+        app:layout_constraintStart_toStartOf="@id/land_1"
+        app:layout_constraintTop_toTopOf="@+id/land_1" />
+
+    <TextView
+        android:id="@+id/strawberry_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="6"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/strawberry_image"
+        app:layout_constraintStart_toStartOf="@id/strawberry_image"
+        app:layout_constraintTop_toBottomOf="@+id/strawberry_image" />
+
+
+    <!-- Apple -->
+    <ImageView
+        android:id="@+id/land_2"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
-        app:layout_constraintBottom_toTopOf="@id/green_land_5"
-        app:layout_constraintEnd_toEndOf="@+id/green_land_5"
-        app:layout_constraintStart_toStartOf="@id/green_land_5" />
+        app:layout_constraintBottom_toTopOf="@id/land_5"
+        app:layout_constraintEnd_toEndOf="@+id/land_5"
+        app:layout_constraintStart_toStartOf="@id/land_5" />
 
     <ImageView
-        android:id="@+id/fruit_image_land_2"
+        android:id="@+id/apple_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:src="@drawable/apple"
-        app:layout_constraintEnd_toEndOf="@+id/green_land_5"
-        app:layout_constraintStart_toStartOf="@id/green_land_5"
-        app:layout_constraintTop_toTopOf="@+id/green_land_2" />
+        app:layout_constraintEnd_toEndOf="@+id/land_5"
+        app:layout_constraintStart_toStartOf="@id/land_5"
+        app:layout_constraintTop_toTopOf="@+id/land_2" />
 
     <TextView
-        android:id="@+id/fruit_quantity_land_2"
+        android:id="@+id/apple_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="3"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/fruit_image_land_2"
-        app:layout_constraintStart_toStartOf="@id/fruit_image_land_2"
-        app:layout_constraintTop_toBottomOf="@+id/fruit_image_land_2" />
+        app:layout_constraintEnd_toEndOf="@+id/apple_image"
+        app:layout_constraintStart_toStartOf="@id/apple_image"
+        app:layout_constraintTop_toBottomOf="@+id/apple_image" />
 
-    <!--    End Land with fruit -->
-
+    <!-- Lemon -->
     <ImageView
-        android:id="@+id/green_land_3"
+        android:id="@+id/land_3"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
-        app:layout_constraintBottom_toTopOf="@id/green_land_6"
+        app:layout_constraintBottom_toTopOf="@id/land_6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/green_land_2" />
+        app:layout_constraintStart_toEndOf="@id/land_2" />
 
     <ImageView
-        android:id="@+id/green_land_4"
+        android:id="@+id/lemon_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/lemon"
+        app:layout_constraintEnd_toEndOf="@+id/land_3"
+        app:layout_constraintStart_toStartOf="@id/land_3"
+        app:layout_constraintTop_toTopOf="@+id/land_3" />
+
+    <TextView
+        android:id="@+id/lemon_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="3"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/lemon_image"
+        app:layout_constraintStart_toStartOf="@id/lemon_image"
+        app:layout_constraintTop_toBottomOf="@+id/lemon_image" />
+
+    <!-- Orange -->
+    <ImageView
+        android:id="@+id/land_4"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
-        app:layout_constraintBottom_toBottomOf="@+id/green_land_5"
-        app:layout_constraintEnd_toStartOf="@+id/green_land_5"
+        app:layout_constraintBottom_toBottomOf="@+id/land_5"
+        app:layout_constraintEnd_toStartOf="@+id/land_5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/green_land_5" />
-
-    <!--    Soil-->
+        app:layout_constraintTop_toTopOf="@+id/land_5" />
 
     <ImageView
-        android:id="@+id/green_land_5"
+        android:id="@+id/orange_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/orange"
+        app:layout_constraintEnd_toEndOf="@+id/land_4"
+        app:layout_constraintStart_toStartOf="@id/land_4"
+        app:layout_constraintTop_toTopOf="@+id/land_4" />
+
+    <TextView
+        android:id="@+id/orange_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="3"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/orange_image"
+        app:layout_constraintStart_toStartOf="@id/orange_image"
+        app:layout_constraintTop_toBottomOf="@+id/orange_image" />
+
+
+    <!-- Mango-->
+    <ImageView
+        android:id="@+id/land_5"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
@@ -138,58 +205,154 @@
         app:layout_constraintTop_toBottomOf="@+id/property_layout" />
 
     <ImageView
-        android:id="@+id/fruit_image_land_5"
+        android:id="@+id/mango_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:src="@drawable/apple"
-        app:layout_constraintEnd_toEndOf="@+id/green_land_5"
-        app:layout_constraintStart_toStartOf="@id/green_land_5"
-        app:layout_constraintTop_toTopOf="@+id/green_land_5" />
+        android:src="@drawable/orange"
+        app:layout_constraintEnd_toEndOf="@+id/land_5"
+        app:layout_constraintStart_toStartOf="@id/land_5"
+        app:layout_constraintTop_toTopOf="@+id/land_5" />
 
+    <TextView
+        android:id="@+id/mango_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="3"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/mango_image"
+        app:layout_constraintStart_toStartOf="@id/mango_image"
+        app:layout_constraintTop_toBottomOf="@+id/mango_image" />
+
+    <!-- Coconut -->
     <ImageView
-        android:id="@+id/green_land_6"
+        android:id="@+id/land_6"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
-        app:layout_constraintBottom_toBottomOf="@id/green_land_5"
+        app:layout_constraintBottom_toBottomOf="@id/land_5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/green_land_5"
-        app:layout_constraintTop_toTopOf="@id/green_land_5" />
+        app:layout_constraintStart_toEndOf="@id/land_5"
+        app:layout_constraintTop_toTopOf="@id/land_5" />
 
     <ImageView
-        android:id="@+id/green_land_7"
+        android:id="@+id/coconut_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/coconut"
+        app:layout_constraintEnd_toEndOf="@+id/land_6"
+        app:layout_constraintStart_toStartOf="@id/land_6"
+        app:layout_constraintTop_toTopOf="@+id/land_6" />
+
+    <TextView
+        android:id="@+id/coconut_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="3"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/coconut_image"
+        app:layout_constraintStart_toStartOf="@id/coconut_image"
+        app:layout_constraintTop_toBottomOf="@+id/coconut_image" />
+
+    <!--Cherry-->
+    <ImageView
+        android:id="@+id/land_7"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
-        app:layout_constraintEnd_toStartOf="@id/green_land_5"
+        app:layout_constraintEnd_toStartOf="@id/land_5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/green_land_4"
-
+        app:layout_constraintTop_toBottomOf="@id/land_4"
         />
 
     <ImageView
-        android:id="@+id/green_land_8"
+        android:id="@+id/cherry_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/cherry"
+        app:layout_constraintEnd_toEndOf="@+id/land_7"
+        app:layout_constraintStart_toStartOf="@id/land_7"
+        app:layout_constraintTop_toTopOf="@+id/land_7" />
+
+    <TextView
+        android:id="@+id/cherry_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="3"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/cherry_image"
+        app:layout_constraintStart_toStartOf="@id/cherry_image"
+        app:layout_constraintTop_toBottomOf="@+id/cherry_image" />
+
+    <!--Green Grape-->
+    <ImageView
+        android:id="@+id/land_8"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
-        app:layout_constraintEnd_toEndOf="@id/green_land_5"
-        app:layout_constraintStart_toStartOf="@id/green_land_5"
-        app:layout_constraintTop_toBottomOf="@id/green_land_5" />
+        app:layout_constraintEnd_toEndOf="@id/land_5"
+        app:layout_constraintStart_toStartOf="@id/land_5"
+        app:layout_constraintTop_toBottomOf="@id/land_5" />
 
     <ImageView
-        android:id="@+id/green_land_9"
+        android:id="@+id/green_grape_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/green_grape"
+        app:layout_constraintEnd_toEndOf="@+id/land_8"
+        app:layout_constraintStart_toStartOf="@id/land_8"
+        app:layout_constraintTop_toTopOf="@+id/land_8" />
+
+    <TextView
+        android:id="@+id/green_grape_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="3"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/green_grape_image"
+        app:layout_constraintStart_toStartOf="@id/green_grape_image"
+        app:layout_constraintTop_toBottomOf="@+id/green_grape_image" />
+
+    <!--Purple grape-->
+    <ImageView
+        android:id="@+id/land_9"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/green_land_8"
-        app:layout_constraintTop_toBottomOf="@id/green_land_6" />
+        app:layout_constraintStart_toEndOf="@id/land_8"
+        app:layout_constraintTop_toBottomOf="@id/land_6" />
 
+    <ImageView
+        android:id="@+id/purple_grape_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/purple_grape"
+        app:layout_constraintEnd_toEndOf="@+id/land_9"
+        app:layout_constraintStart_toStartOf="@id/land_9"
+        app:layout_constraintTop_toTopOf="@+id/land_9" />
 
+    <TextView
+        android:id="@+id/purple_grape_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="3"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/purple_grape_image"
+        app:layout_constraintStart_toStartOf="@id/purple_grape_image"
+        app:layout_constraintTop_toBottomOf="@+id/purple_grape_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
