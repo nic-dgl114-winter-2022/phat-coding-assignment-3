@@ -10,7 +10,10 @@ import com.example.phat_coding_assignment_3.databinding.MarketItemBinding
 
 class MarketAdapter(private val onItemClicked: (Fruit, String) -> Unit) :
     ListAdapter<Fruit, MarketAdapter.MarketViewHolder>(DiffCallback) {
-    class MarketViewHolder(private var binding: MarketItemBinding, private var onItemClicked: (Fruit, String) -> Unit) :
+    class MarketViewHolder(
+        private var binding: MarketItemBinding,
+        private var onItemClicked: (Fruit, String) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(fruit: Fruit) {
@@ -24,7 +27,11 @@ class MarketAdapter(private val onItemClicked: (Fruit, String) -> Unit) :
                 binding.sellButton.isEnabled = true
                 binding.fruitSellAmount.isEnabled = true
                 binding.sellButton.setOnClickListener {
-                    onItemClicked(fruit, binding.fruitSellAmount.text.toString())
+                    // Check if amount is valid or not
+                    if (binding.fruitSellAmount.text.toString() != "" && binding.fruitSellAmount.text.toString() != "0") {
+                        onItemClicked(fruit, binding.fruitSellAmount.text.toString())
+                    }
+                    // Reset input
                     binding.fruitSellAmount.setText("")
                 }
             } else {

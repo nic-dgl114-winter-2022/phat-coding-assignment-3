@@ -73,7 +73,7 @@ class MarketFragment : Fragment() {
         recyclerView = binding.marketRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        var adapter = MarketAdapter { fruit: Fruit, sellingAmount: String ->
+        val adapter = MarketAdapter { fruit: Fruit, sellingAmount: String ->
             // Pass sell function to adapter
             sellFruit(fruit, sellingAmount)
         }
@@ -119,27 +119,23 @@ class MarketFragment : Fragment() {
     }
 
     private fun sellFruit(fruit: Fruit, sellingAmount: String) {
-        val _sellingAmount: Int = if (sellingAmount == "" || sellingAmount == "0") {
-            0
-        } else {
-            sellingAmount.toInt()
+        if (sellingAmount != "" && sellingAmount != "0") {
+            val totalMoney = fruit.fruitPrice * sellingAmount.toInt()
+            val remainingAmount = fruit.fruitQuantityInStock - sellingAmount.toInt()
+
+            // Update stock
+            fruitViewModel.updateFruit(
+                fruitId = fruit.id,
+                fruitName = fruit.fruitName,
+                fruitImageResourceId = fruit.fruitImageResourceId.toString(),
+                fruitPrice = fruit.fruitPrice.toString(),
+                fruitCount = remainingAmount.toString()
+            )
+
+            // Update money
+            val money = player.money + totalMoney
+            userViewModel.updateUser(player.id, money)
         }
-        val totalMoney = fruit.fruitPrice * _sellingAmount
-        val remainingAmount = fruit.fruitQuantityInStock - _sellingAmount
-
-        // Update stock
-        fruitViewModel.updateFruit(
-            fruitId = fruit.id,
-            fruitName = fruit.fruitName,
-            fruitImageResourceId = fruit.fruitImageResourceId.toString(),
-            fruitPrice = fruit.fruitPrice.toString(),
-            fruitCount = remainingAmount.toString()
-        )
-
-        // Update money
-        val money = player.money + totalMoney
-        userViewModel.updateUser(player.id, money)
-
     }
 
     private fun calculateTotalValue(fruits: List<Fruit>) {
