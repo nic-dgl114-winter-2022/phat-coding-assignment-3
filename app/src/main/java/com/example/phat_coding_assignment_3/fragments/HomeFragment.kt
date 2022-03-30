@@ -59,12 +59,6 @@ class HomeFragment : Fragment() {
         binding.marketImage.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_marketFragment)
         }
-
-        viewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
-            for (fruit in fruits) {
-                loadFruitQuantity(fruit)
-            }
-        }
     }
 
     override fun onDestroyView() {
@@ -72,17 +66,4 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun loadFruitQuantity(fruit: Fruit) {
-        when(fruit.fruitName) {
-            "Strawberry" -> binding.strawberryQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Apple" -> binding.appleQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Lemon" -> binding.lemonQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Orange" -> binding.orangeQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Mango" -> binding.mangoQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Coconut" -> binding.coconutQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Cherry" -> binding.cherryQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Green Grape" -> binding.greenGrapeQuantity.text = fruit.fruitQuantityInStock.toString()
-            "Purple Grape" -> binding.purpleGrapeQuantity.text = fruit.fruitQuantityInStock.toString()
-        }
-    }
 }

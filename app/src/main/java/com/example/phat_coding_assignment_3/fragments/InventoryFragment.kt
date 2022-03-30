@@ -1,20 +1,17 @@
 package com.example.phat_coding_assignment_3.fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.phat_coding_assignment_3.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phat_coding_assignment_3.adapters.InventoryAdapter
 import com.example.phat_coding_assignment_3.data.MainApplication
-import com.example.phat_coding_assignment_3.databinding.FragmentHomeBinding
 import com.example.phat_coding_assignment_3.databinding.FragmentInventoryBinding
-import com.example.phat_coding_assignment_3.databinding.InventoryItemBinding
 import com.example.phat_coding_assignment_3.view_models.InventoryViewModel
 import com.example.phat_coding_assignment_3.view_models.InventoryViewModelFactory
 
@@ -54,21 +51,23 @@ class InventoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Set up recycler view
-        binding.inventoryRecyclerView.layoutManager = GridLayoutManager(context, 4)
+        binding.inventoryRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         val adapter = InventoryAdapter()
         binding.inventoryRecyclerView.adapter = adapter
-
-        // Attach an observer on the allItems list to update the UI automatically when the data
-        // changes.
-//        viewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
-//            fruits.let {
-//
-//            }
-//        }
-
-        binding.addFruitButton.setOnClickListener {
-            addNewFruit()
+        // Add decorating divider
+        binding.inventoryRecyclerView.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        // Observe all fruits
+        viewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
+            fruits.let {
+                adapter.submitList(it)
+            }
         }
+
     }
 
     override fun onDestroyView() {
@@ -76,11 +75,4 @@ class InventoryFragment : Fragment() {
         _binding = null
     }
 
-    private fun addNewFruit() {
-//        viewModel.addNewFruit("Apple", R.drawable.apple.toString(), "3", "10")
-//        Log.d("Fruit", "Apple")
-//        Log.d("Fruit", R.drawable.apple.toString())
-//        Log.d("Fruit", "3")
-//        Log.d("Fruit", "10")
-    }
 }

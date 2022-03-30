@@ -15,24 +15,13 @@ import com.example.phat_coding_assignment_3.databinding.InventoryItemBinding
 
 class InventoryAdapter() : ListAdapter<Fruit, InventoryAdapter.InventoryViewHolder>(DiffCallback) {
 
-    private val fruits = listOf(
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-    )
-
     class InventoryViewHolder(private var binding: InventoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        //        val fruitImage: ImageView = view.findViewById(R.id.fruit_image)
-//        val fruitName: TextView = view.findViewById(R.id.fruit_name)
-//        val fruitAmount: TextView = view.findViewById(R.id.fruit_amount)
-        fun bind() {
-            binding.fruitImage.setImageResource(R.drawable.apple)
-            binding.fruitName.text = "Apple"
-            binding.fruitAmount.text = "2"
+
+        fun bind(fruit: Fruit) {
+            binding.fruitImage.setImageResource(fruit.fruitImageResourceId)
+            binding.fruitName.text = fruit.fruitName
+            binding.fruitAmount.text = fruit.fruitQuantityInStock.toString()
         }
     }
 
@@ -44,18 +33,10 @@ class InventoryAdapter() : ListAdapter<Fruit, InventoryAdapter.InventoryViewHold
     }
 
     override fun onBindViewHolder(holder: InventoryViewHolder, position: Int) {
-        var fruit = fruits[position]
+        val current = getItem(position)
 
-        // Binding data to view
-//        fruit.fruitImage =
-//        fruit.fruitName = "Apple"
-//        fruit.fruitAmount = "2"
-        holder.bind()
+        holder.bind(current)
     }
-
-//    override fun getItemCount(): Int {
-//        return fruits.size
-//    }
 
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Fruit>() {
