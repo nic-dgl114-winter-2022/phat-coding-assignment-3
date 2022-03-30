@@ -1,5 +1,6 @@
 package com.example.phat_coding_assignment_3.view_models
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.phat_coding_assignment_3.data.land.Land
 import com.example.phat_coding_assignment_3.data.user.User

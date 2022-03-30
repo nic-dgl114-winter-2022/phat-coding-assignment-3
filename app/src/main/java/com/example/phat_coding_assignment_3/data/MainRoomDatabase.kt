@@ -1,6 +1,7 @@
 package com.example.phat_coding_assignment_3.data
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -11,7 +12,7 @@ import com.example.phat_coding_assignment_3.data.land.LandDao
 import com.example.phat_coding_assignment_3.data.user.User
 import com.example.phat_coding_assignment_3.data.user.UserDao
 
-@Database(entities = [Fruit::class, Land::class, User::class], version = 3, exportSchema = false)
+@Database(entities = [Fruit::class, Land::class, User::class], version = 1, exportSchema = false)
 abstract class MainRoomDatabase : RoomDatabase() {
     abstract fun fruitDao(): FruitDao
     abstract fun landDao(): LandDao
@@ -33,8 +34,9 @@ abstract class MainRoomDatabase : RoomDatabase() {
                     // Wipes and rebuilds instead of migrating if no Migration object.
                     // Migration is not part of this codelab.
                     .fallbackToDestructiveMigration()
-//                    .createFromAsset("farming_game.db")
+//                    .createFromAsset("app_database.db")
                     .build()
+
                 INSTANCE = instance
                 // return instance
                 instance

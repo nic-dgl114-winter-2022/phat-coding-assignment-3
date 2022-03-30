@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.phat_coding_assignment_3.data.fruit.Fruit
 import com.example.phat_coding_assignment_3.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

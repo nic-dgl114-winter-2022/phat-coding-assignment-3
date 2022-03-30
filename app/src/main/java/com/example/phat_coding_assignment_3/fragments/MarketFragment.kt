@@ -81,30 +81,34 @@ class MarketFragment : Fragment() {
 
         // Observe all users
         userViewModel.allUsers.observe(this.viewLifecycleOwner) { users ->
-            // Get the first user because only 1 player is playing this game
-            player = users[0]
+            if (users.isNotEmpty()) {
+                // Get the first user because only 1 player is playing this game
+                player = users[0]
+            }
         }
 
         // Observe all fruits
         fruitViewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
-            fruits.let {
-                adapter.submitList(it)
+            if (fruits.isNotEmpty()) {
+                fruits.let {
+                    adapter.submitList(it)
 
-                // Calculate total value and display it
-                calculateTotalValue(it)
+                    // Calculate total value and display it
+                    calculateTotalValue(it)
 
-                // Copy the list to handle the selling
-                fruitList = it
-            }
-
-            // Listener for "Sell all" button
-            if (totalValue > 0) {
-                binding.sellAllButton.setOnClickListener {
-                    sellAllFruits()
+                    // Copy the list to handle the selling
+                    fruitList = it
                 }
-                binding.sellAllButton.isEnabled = true
-            } else {
-                binding.sellAllButton.isEnabled = false
+
+                // Listener for "Sell all" button
+                if (totalValue > 0) {
+                    binding.sellAllButton.setOnClickListener {
+                        sellAllFruits()
+                    }
+                    binding.sellAllButton.isEnabled = true
+                } else {
+                    binding.sellAllButton.isEnabled = false
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ import com.example.phat_coding_assignment_3.R
 import com.example.phat_coding_assignment_3.data.MainApplication
 import com.example.phat_coding_assignment_3.data.fruit.Fruit
 import com.example.phat_coding_assignment_3.data.land.Land
+import com.example.phat_coding_assignment_3.data.user.User
 import com.example.phat_coding_assignment_3.databinding.FragmentHomeBinding
 import com.example.phat_coding_assignment_3.view_models.*
 import java.util.*
@@ -26,6 +27,8 @@ import java.util.*
 class HomeFragment : Fragment() {
     // Fruit
     lateinit var fruitList: List<Fruit>
+    lateinit var userList: List<User>
+    lateinit var landList: List<Land>
 
     // View model
     private val landViewModel: LandViewModel by activityViewModels {
@@ -47,15 +50,6 @@ class HomeFragment : Fragment() {
     // Binding
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Create all fruits
-//        fruitViewModel.initializeFruits()
-//        landViewModel.initializeLands()
-//        userViewModel.initializeUsers()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,21 +75,42 @@ class HomeFragment : Fragment() {
 
         // Observe all users
         userViewModel.allUsers.observe(this.viewLifecycleOwner) { users ->
-            // Get the first user because only 1 player is playing this game
-            val player = users[0]
-            binding.moneyAmount.text = player.money.toString()
+            userList = users
+
+            if (users.isNotEmpty()) {
+                // Get the first user because only 1 player is playing this game
+                val player = users[0]
+                binding.moneyAmount.text = player.money.toString()
+            } else {
+                // Initialize the data
+                userViewModel.initializeUsers()
+            }
         }
 
         // Observe lands
         landViewModel.allLands.observe(this.viewLifecycleOwner) { lands ->
-            for (land in lands) {
-                loadLand(land)
+            landList = lands
+
+            if (lands.isNotEmpty()) {
+                for (land in lands) {
+                    loadLand(land)
+                }
+            } else {
+                // Initialize the data
+                landViewModel.initializeLands()
             }
         }
 
         // Observe all fruits
-        fruitViewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
-            fruitList = fruits
+        fruitViewModel.allFruits.observe(this.viewLifecycleOwner)
+        { fruits ->
+            if (fruits.isNotEmpty()) {
+                fruitList = fruits
+
+            } else {
+                // Initialize the data
+                fruitViewModel.initializeFruits()
+            }
         }
 
 //        // Automatically increase harvest amount by 6 in 10 seconds
