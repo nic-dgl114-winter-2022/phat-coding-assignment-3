@@ -90,23 +90,31 @@ class MarketFragment : Fragment() {
             fruits.let {
                 adapter.submitList(it)
             }
+            // Copy the list to handle the selling
+            fruitList = fruits
 
             // Calculate total value and display it
             calculateTotalValue(fruits)
-        }
 
-        // Listener for "Sell all" button
-        binding.sellAllButton.setOnClickListener {
-            sellAllFruits()
+            // Listener for "Sell all" button
+            if (totalValue > 0) {
+                binding.sellAllButton.setOnClickListener {
+                    sellAllFruits()
+                }
+                binding.sellAllButton.isEnabled = true
+            } else {
+                binding.sellAllButton.isEnabled = false
+            }
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    private fun calculateTotalValue (fruits: List<Fruit>) {
+    private fun calculateTotalValue(fruits: List<Fruit>) {
         fruits.forEach {
             totalValue += it.fruitPrice * it.fruitQuantityInStock
         }
@@ -118,6 +126,19 @@ class MarketFragment : Fragment() {
 
     // Sell all the available fruits
     private fun sellAllFruits() {
+        // Update stock
+        fruitList.forEach {
+            fruitViewModel.updateFruit(
+                fruitId = it.id,
+                fruitName = it.fruitName,
+                fruitImageResourceId = it.fruitImageResourceId.toString(),
+                fruitPrice = it.fruitPrice.toString(),
+                fruitCount = "0"
+            )
+        }
 
+        // Update money
+        val money = player.money + totalValue
+        userViewModel.updateUser(player.id, money)
     }
 }

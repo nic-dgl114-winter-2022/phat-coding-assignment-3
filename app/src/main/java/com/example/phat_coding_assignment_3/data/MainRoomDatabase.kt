@@ -11,7 +11,7 @@ import com.example.phat_coding_assignment_3.data.land.LandDao
 import com.example.phat_coding_assignment_3.data.user.User
 import com.example.phat_coding_assignment_3.data.user.UserDao
 
-@Database(entities = [Fruit::class, Land::class, User::class], version = 2, exportSchema = false)
+@Database(entities = [Fruit::class, Land::class, User::class], version = 3, exportSchema = false)
 abstract class MainRoomDatabase : RoomDatabase() {
     abstract fun fruitDao(): FruitDao
     abstract fun landDao(): LandDao

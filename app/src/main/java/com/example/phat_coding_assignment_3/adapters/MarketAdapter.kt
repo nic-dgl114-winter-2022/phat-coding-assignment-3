@@ -18,15 +18,23 @@ class MarketAdapter() : ListAdapter<Fruit, MarketAdapter.MarketViewHolder>(DiffC
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(fruit: Fruit) {
-            if (fruit.fruitQuantityInStock > 0) {
-                binding.fruitImage.setImageResource(fruit.fruitImageResourceId)
-                binding.fruitName.text = fruit.fruitName
+            binding.fruitImage.setImageResource(fruit.fruitImageResourceId)
+            binding.fruitName.text = fruit.fruitName
                 binding.availableAmount.text = fruit.fruitQuantityInStock.toString()
+            if (fruit.fruitQuantityInStock > 0) {
+                binding.sellButton.isEnabled = true
+                binding.fruitSellAmount.isEnabled = true
+            } else {
+                binding.sellButton.isEnabled = false
+                binding.fruitSellAmount.isEnabled = false
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarketViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): MarketAdapter.MarketViewHolder {
         val layout =
             MarketItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
