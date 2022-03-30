@@ -12,12 +12,15 @@ interface FruitDao {
     @Query("SELECT * FROM fruit WHERE id = :id")
     fun getFruit(id: Int): Flow<Fruit>
 
+    @Query("UPDATE fruit SET quantity_in_stock = quantity_in_stock + :amount WHERE id = :id")
+    fun increaseAmount(id: Int, amount: Int)
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(fruit: Fruit)
-//
-//    @Update
-//    suspend fun update(fruit: Fruit)
-//
+
+    @Update
+    suspend fun update(fruit: Fruit)
+
 //    @Delete
 //    suspend fun delete(fruit: Fruit)
 }

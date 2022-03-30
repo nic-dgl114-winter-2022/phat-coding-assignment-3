@@ -1,6 +1,5 @@
 package com.example.phat_coding_assignment_3.view_models
 
-import android.content.ClipData
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.phat_coding_assignment_3.R
@@ -8,7 +7,7 @@ import com.example.phat_coding_assignment_3.data.fruit.Fruit
 import com.example.phat_coding_assignment_3.data.fruit.FruitDao
 import kotlinx.coroutines.launch
 
-class InventoryViewModel(private val fruitDao: FruitDao) : ViewModel() {
+class FruitViewModel(private val fruitDao: FruitDao) : ViewModel() {
 
     /*
     *   Initialize data for Fruit
@@ -63,16 +62,71 @@ class InventoryViewModel(private val fruitDao: FruitDao) : ViewModel() {
             fruitQuantityInStock = fruitCount.toInt()
         )
     }
+
+    /*
+    *   Get Fruit
+    * */
+    fun getFruitById(id: Int): LiveData<Fruit> {
+        return fruitDao.getFruit(id).asLiveData()
+    }
+
+    /*
+    *   Increase stock
+    * */
+    fun increaseStock (fruitId: Int, amount: Int) {
+        viewModelScope.launch {
+            fruitDao.increaseAmount(id = fruitId, amount = amount)
+        }
+    }
+
+    /*
+    *  Update fruit to database
+    * */
+    fun updateFruit(
+        fruitId: Int,
+        fruitName: String,
+        fruitImageResourceId: String,
+        fruitPrice: String,
+        fruitCount: String
+    ) {
+        val updatedFruit = getUpdatedFruitEntry(fruitId, fruitName, fruitImageResourceId, fruitPrice, fruitCount)
+        editFruit(updatedFruit)
+    }
+
+    private fun editFruit(fruit: Fruit) {
+        viewModelScope.launch {
+            fruitDao.update(fruit)
+        }
+    }
+
+    /*
+    *  Update Fruit Entry
+    * */
+    private fun getUpdatedFruitEntry(
+        fruitId: Int,
+        fruitName: String,
+        fruitImageResourceId: String,
+        fruitPrice: String,
+        fruitCount: String
+    ): Fruit {
+        return Fruit(
+            id = fruitId,
+            fruitName = fruitName,
+            fruitImageResourceId = fruitImageResourceId.toInt(),
+            fruitPrice = fruitPrice.toInt(),
+            fruitQuantityInStock = fruitCount.toInt()
+        )
+    }
 }
 
 /**
  * Factory class to instantiate the [ViewModel] instance.
  */
-class InventoryViewModelFactory(private val fruitDao: FruitDao) : ViewModelProvider.Factory {
+class FruitViewModelFactory(private val fruitDao: FruitDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(InventoryViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(FruitViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return InventoryViewModel(fruitDao) as T
+            return FruitViewModel(fruitDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

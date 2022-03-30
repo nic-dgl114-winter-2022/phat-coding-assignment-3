@@ -9,7 +9,7 @@ import com.example.phat_coding_assignment_3.data.fruit.FruitDao
 import com.example.phat_coding_assignment_3.data.land.Land
 import com.example.phat_coding_assignment_3.data.land.LandDao
 
-@Database(entities = arrayOf(Fruit::class, Land::class), version = 2, exportSchema = false)
+@Database(entities = [Fruit::class, Land::class], version = 2, exportSchema = false)
 abstract class MainRoomDatabase : RoomDatabase() {
     abstract fun fruitDao(): FruitDao
     abstract fun landDao(): LandDao
@@ -25,11 +25,12 @@ abstract class MainRoomDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MainRoomDatabase::class.java,
-                    "farming_game"
+                    "app_database"
                 )
                     // Wipes and rebuilds instead of migrating if no Migration object.
                     // Migration is not part of this codelab.
                     .fallbackToDestructiveMigration()
+//                    .createFromAsset("farming_game.db")
                     .build()
                 INSTANCE = instance
                 // return instance

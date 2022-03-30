@@ -8,12 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phat_coding_assignment_3.adapters.InventoryAdapter
 import com.example.phat_coding_assignment_3.data.MainApplication
 import com.example.phat_coding_assignment_3.databinding.FragmentInventoryBinding
-import com.example.phat_coding_assignment_3.view_models.InventoryViewModel
-import com.example.phat_coding_assignment_3.view_models.InventoryViewModelFactory
+import com.example.phat_coding_assignment_3.view_models.FruitViewModel
+import com.example.phat_coding_assignment_3.view_models.FruitViewModelFactory
 
 
 /**
@@ -22,8 +21,8 @@ import com.example.phat_coding_assignment_3.view_models.InventoryViewModelFactor
  * create an instance of this fragment.
  */
 class InventoryFragment : Fragment() {
-    private val viewModel: InventoryViewModel by activityViewModels {
-        InventoryViewModelFactory(
+    private val viewModel: FruitViewModel by activityViewModels {
+        FruitViewModelFactory(
             (activity?.application as MainApplication).database.fruitDao()
         )
     }
