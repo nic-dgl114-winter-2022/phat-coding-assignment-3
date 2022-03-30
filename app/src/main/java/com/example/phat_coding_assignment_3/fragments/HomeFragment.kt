@@ -14,10 +14,7 @@ import com.example.phat_coding_assignment_3.data.MainApplication
 import com.example.phat_coding_assignment_3.data.fruit.Fruit
 import com.example.phat_coding_assignment_3.data.land.Land
 import com.example.phat_coding_assignment_3.databinding.FragmentHomeBinding
-import com.example.phat_coding_assignment_3.view_models.FruitViewModel
-import com.example.phat_coding_assignment_3.view_models.FruitViewModelFactory
-import com.example.phat_coding_assignment_3.view_models.LandViewModel
-import com.example.phat_coding_assignment_3.view_models.LandViewModelFactory
+import com.example.phat_coding_assignment_3.view_models.*
 import java.util.*
 
 
@@ -41,6 +38,11 @@ class HomeFragment : Fragment() {
             (activity?.application as MainApplication).database.fruitDao()
         )
     }
+    private val userViewModel: UserViewModel by activityViewModels {
+        UserViewModelFactory(
+            (activity?.application as MainApplication).database.userDao()
+        )
+    }
 
     // Binding
     private var _binding: FragmentHomeBinding? = null
@@ -52,6 +54,7 @@ class HomeFragment : Fragment() {
         // Create all fruits
 //        fruitViewModel.initializeFruits()
 //        landViewModel.initializeLands()
+        userViewModel.initializeUsers()
     }
 
     override fun onCreateView(
@@ -74,6 +77,13 @@ class HomeFragment : Fragment() {
         // Access to Market
         binding.marketImage.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_marketFragment)
+        }
+
+        // Observe all users
+        userViewModel.allUsers.observe(this.viewLifecycleOwner) { users ->
+            // Get the first user because only 1 player is playing this game
+            val player = users[0]
+            binding.moneyAmount.text = player.money.toString()
         }
 
         // Observe lands

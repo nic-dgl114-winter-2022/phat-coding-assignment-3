@@ -78,8 +78,6 @@ class LandViewModel(private val landDao: LandDao) : ViewModel() {
 
         if (harvestedLand.landStatus == "finished" && harvestedLand.harvestAmount > 0) {
             updateLand(landId, landName, "pending", fruitId, "0")
-
-
         }
     }
 

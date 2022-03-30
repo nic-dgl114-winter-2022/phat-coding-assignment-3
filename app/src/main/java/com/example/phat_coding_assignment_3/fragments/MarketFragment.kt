@@ -15,10 +15,13 @@ import com.example.phat_coding_assignment_3.adapters.InventoryAdapter
 import com.example.phat_coding_assignment_3.adapters.MarketAdapter
 import com.example.phat_coding_assignment_3.data.MainApplication
 import com.example.phat_coding_assignment_3.data.fruit.Fruit
+import com.example.phat_coding_assignment_3.data.user.User
 import com.example.phat_coding_assignment_3.databinding.FragmentInventoryBinding
 import com.example.phat_coding_assignment_3.databinding.FragmentMarketBinding
 import com.example.phat_coding_assignment_3.view_models.FruitViewModel
 import com.example.phat_coding_assignment_3.view_models.FruitViewModelFactory
+import com.example.phat_coding_assignment_3.view_models.UserViewModel
+import com.example.phat_coding_assignment_3.view_models.UserViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -26,14 +29,24 @@ import com.example.phat_coding_assignment_3.view_models.FruitViewModelFactory
  * create an instance of this fragment.
  */
 class MarketFragment : Fragment() {
-    private val viewModel: FruitViewModel by activityViewModels {
+    private val fruitViewModel: FruitViewModel by activityViewModels {
         FruitViewModelFactory(
             (activity?.application as MainApplication).database.fruitDao()
         )
     }
 
+    private val userViewModel: UserViewModel by activityViewModels {
+        UserViewModelFactory(
+            (activity?.application as MainApplication).database.userDao()
+        )
+    }
+
+
     private lateinit var fruitList: List<Fruit>
     private var totalValue: Int = 0
+
+    // User data
+    private lateinit var player: User
 
     // Set up view binding
     private var _binding: FragmentMarketBinding? = null
@@ -66,17 +79,21 @@ class MarketFragment : Fragment() {
         val adapter = MarketAdapter()
         recyclerView.adapter = adapter
 
+        // Observe all users
+        userViewModel.allUsers.observe(this.viewLifecycleOwner) { users ->
+            // Get the first user because only 1 player is playing this game
+            player = users[0]
+        }
+
         // Observe all fruits
-        viewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
+        fruitViewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
             fruits.let {
                 adapter.submitList(it)
             }
 
-
             // Calculate total value and display it
             calculateTotalValue(fruits)
         }
-
 
         // Listener for "Sell all" button
         binding.sellAllButton.setOnClickListener {
@@ -101,6 +118,6 @@ class MarketFragment : Fragment() {
 
     // Sell all the available fruits
     private fun sellAllFruits() {
-        
+
     }
 }
