@@ -14,6 +14,8 @@ import com.example.phat_coding_assignment_3.data.fruit.Fruit
 import com.example.phat_coding_assignment_3.databinding.FragmentHomeBinding
 import com.example.phat_coding_assignment_3.view_models.InventoryViewModel
 import com.example.phat_coding_assignment_3.view_models.InventoryViewModelFactory
+import com.example.phat_coding_assignment_3.view_models.LandViewModel
+import com.example.phat_coding_assignment_3.view_models.LandViewModelFactory
 
 
 /**
@@ -22,9 +24,9 @@ import com.example.phat_coding_assignment_3.view_models.InventoryViewModelFactor
  * create an instance of this fragment.
  */
 class HomeFragment : Fragment() {
-    private val viewModel: InventoryViewModel by activityViewModels {
-        InventoryViewModelFactory(
-            (activity?.application as MainApplication).database.fruitDao()
+    private val viewModel: LandViewModel by activityViewModels {
+        LandViewModelFactory(
+            (activity?.application as MainApplication).database.landDao()
         )
     }
 
@@ -35,7 +37,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
 //        // Create all fruits
-//        viewModel.initializeFruits()
+//        viewModel.initializeLands()
     }
 
     override fun onCreateView(
@@ -66,4 +68,8 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+
+    private fun loadLands() {
+
+    }
 }

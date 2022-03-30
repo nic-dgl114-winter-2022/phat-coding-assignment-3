@@ -1,6 +1,5 @@
 package com.example.phat_coding_assignment_3.data.fruit
 
-import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

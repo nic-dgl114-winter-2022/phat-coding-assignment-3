@@ -12,9 +12,6 @@ interface FruitDao {
     @Query("SELECT * FROM fruit WHERE id = :id")
     fun getFruit(id: Int): Flow<Fruit>
 
-    @Query("SELECT * FROM fruit WHERE id = :name")
-    fun getFruitByName(name: String): Flow<Fruit>
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(fruit: Fruit)
 //

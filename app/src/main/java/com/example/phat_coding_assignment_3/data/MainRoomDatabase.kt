@@ -6,10 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.phat_coding_assignment_3.data.fruit.Fruit
 import com.example.phat_coding_assignment_3.data.fruit.FruitDao
+import com.example.phat_coding_assignment_3.data.land.Land
+import com.example.phat_coding_assignment_3.data.land.LandDao
 
-@Database(entities = [Fruit::class], version = 1, exportSchema = false)
+@Database(entities = arrayOf(Fruit::class, Land::class), version = 2, exportSchema = false)
 abstract class MainRoomDatabase : RoomDatabase() {
     abstract fun fruitDao(): FruitDao
+    abstract fun landDao(): LandDao
 
     companion object {
         @Volatile
