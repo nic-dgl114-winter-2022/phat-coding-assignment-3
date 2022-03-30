@@ -86,7 +86,6 @@ class HomeFragment : Fragment() {
         // Observe all fruits
         fruitViewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
             fruitList = fruits
-            Log.d("Fruit", fruitList.toString())
         }
 
 //        // Automatically increase harvest amount by 6 in 10 seconds
