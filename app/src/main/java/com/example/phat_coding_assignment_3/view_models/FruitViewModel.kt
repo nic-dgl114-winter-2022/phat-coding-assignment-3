@@ -27,6 +27,16 @@ class FruitViewModel(private val fruitDao: FruitDao) : ViewModel() {
     // Cache all fruits
     val allFruits: LiveData<List<Fruit>> = fruitDao.getFruits().asLiveData()
 
+    private fun hasValidAmount(fruit: Fruit) {
+
+    }
+
+    fun sellFruit(fruit: Fruit) {
+        if (fruit.fruitQuantityInStock > 0) {
+            editFruit(fruit)
+        }
+    }
+
     /*
     * Add new Fruit to database
     * */
@@ -73,7 +83,7 @@ class FruitViewModel(private val fruitDao: FruitDao) : ViewModel() {
     /*
     *   Increase stock
     * */
-    fun increaseStock (fruitId: Int, amount: Int) {
+    fun increaseStock(fruitId: Int, amount: Int) {
         viewModelScope.launch {
             fruitDao.increaseAmount(id = fruitId, amount = amount)
         }
@@ -89,7 +99,8 @@ class FruitViewModel(private val fruitDao: FruitDao) : ViewModel() {
         fruitPrice: String,
         fruitCount: String
     ) {
-        val updatedFruit = getUpdatedFruitEntry(fruitId, fruitName, fruitImageResourceId, fruitPrice, fruitCount)
+        val updatedFruit =
+            getUpdatedFruitEntry(fruitId, fruitName, fruitImageResourceId, fruitPrice, fruitCount)
         editFruit(updatedFruit)
     }
 

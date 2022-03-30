@@ -355,4 +355,27 @@
         app:layout_constraintStart_toStartOf="@id/land_9_fruit_image"
         app:layout_constraintTop_toBottomOf="@+id/land_9_fruit_image" />
 
+    <!-- Money -->
+    <ImageView
+        android:id="@+id/money_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="#FFEE58"
+        android:backgroundTint="#FFCA28"
+        android:src="@drawable/ic_baseline_monetization_on_24"
+        app:layout_constraintBottom_toBottomOf="@+id/money_amount"
+        app:layout_constraintEnd_toStartOf="@+id/money_amount"
+        app:layout_constraintTop_toTopOf="@+id/money_amount" />
+
+    <TextView
+        android:id="@+id/money_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="1000"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

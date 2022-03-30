@@ -6,4 +6,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="total_value">Total value</string>
     <string name="sell_all">sell all</string>
+    <string name="quantity_divider">/</string>
+    <string name="sell_button">sell</string>
 </resources>

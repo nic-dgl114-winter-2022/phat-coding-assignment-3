@@ -5,14 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phat_coding_assignment_3.R
 import com.example.phat_coding_assignment_3.adapters.InventoryAdapter
 import com.example.phat_coding_assignment_3.adapters.MarketAdapter
+import com.example.phat_coding_assignment_3.data.MainApplication
 import com.example.phat_coding_assignment_3.databinding.FragmentInventoryBinding
 import com.example.phat_coding_assignment_3.databinding.FragmentMarketBinding
+import com.example.phat_coding_assignment_3.view_models.FruitViewModel
+import com.example.phat_coding_assignment_3.view_models.FruitViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -20,6 +24,12 @@ import com.example.phat_coding_assignment_3.databinding.FragmentMarketBinding
  * create an instance of this fragment.
  */
 class MarketFragment : Fragment() {
+
+    private val viewModel: FruitViewModel by activityViewModels {
+        FruitViewModelFactory(
+            (activity?.application as MainApplication).database.fruitDao()
+        )
+    }
 
     // Set up view binding
     private var _binding: FragmentMarketBinding? = null
@@ -49,7 +59,15 @@ class MarketFragment : Fragment() {
         // Set up recycler view
         recyclerView = binding.marketRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = MarketAdapter()
+        val adapter = MarketAdapter()
+        recyclerView.adapter = adapter
+
+        // Observe all fruits
+        viewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
+            fruits.let {
+                adapter.submitList(it)
+            }
+        }
     }
 
     override fun onDestroyView() {

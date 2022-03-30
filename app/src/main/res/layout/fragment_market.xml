@@ -11,7 +11,7 @@
         android:id="@+id/total_sell_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:text="@string/total_value"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,9 +33,9 @@
         android:id="@+id/total_sell_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
+        android:padding="8dp"
         android:text="1000"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/sell_all_button"
         app:layout_constraintStart_toEndOf="@+id/total_sell_title"
@@ -45,30 +45,20 @@
         android:id="@+id/sell_all_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:text="@string/sell_all"
         app:layout_constraintBottom_toBottomOf="@+id/total_sell_amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/total_sell_amount" />
 
-    <View
-        android:id="@+id/divider"
-        style="@style/Divider"
-        android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/market_recycler_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sell_all_button" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/market_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:scrollbars="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/total_sell_title"
+        android:paddingTop="24dp"
+        android:paddingBottom="50dp"
         tools:listitem="@layout/market_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
