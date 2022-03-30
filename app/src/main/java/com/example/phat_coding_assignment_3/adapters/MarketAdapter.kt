@@ -17,6 +17,7 @@ class MarketAdapter(private val onItemClicked: (Fruit, String) -> Unit) :
             binding.fruitImage.setImageResource(fruit.fruitImageResourceId)
             binding.fruitName.text = fruit.fruitName
             binding.availableAmount.text = fruit.fruitQuantityInStock.toString()
+            binding.fruitPrice.text = fruit.fruitPrice.toString()
 
             // Can sell
             if (fruit.fruitQuantityInStock > 0) {
