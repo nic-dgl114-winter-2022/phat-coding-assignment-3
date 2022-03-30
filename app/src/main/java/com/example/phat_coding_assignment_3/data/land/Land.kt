@@ -16,6 +16,4 @@ data class Land (
     val fruitId: Int,
     @ColumnInfo(name="harvest_amount")
     val harvestAmount: Int,
-//    @ColumnInfo(name="seconds_to_harvest")
-//    val secondsToHarvest: Int,
 )

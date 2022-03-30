@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import com.example.phat_coding_assignment_3.R
 import com.example.phat_coding_assignment_3.data.MainApplication
@@ -29,6 +28,8 @@ class HomeFragment : Fragment() {
     lateinit var fruitList: List<Fruit>
     lateinit var userList: List<User>
     lateinit var landList: List<Land>
+
+    private var isGrowing = false
 
     // View model
     private val landViewModel: LandViewModel by activityViewModels {
@@ -75,9 +76,8 @@ class HomeFragment : Fragment() {
 
         // Observe all users
         userViewModel.allUsers.observe(this.viewLifecycleOwner) { users ->
-            userList = users
-
             if (users.isNotEmpty()) {
+                userList = users
                 // Get the first user because only 1 player is playing this game
                 val player = users[0]
                 binding.moneyAmount.text = player.money.toString()
@@ -89,11 +89,15 @@ class HomeFragment : Fragment() {
 
         // Observe lands
         landViewModel.allLands.observe(this.viewLifecycleOwner) { lands ->
-            landList = lands
-
             if (lands.isNotEmpty()) {
+                landList = lands
                 for (land in lands) {
                     loadLand(land)
+                }
+
+                // Automatically increase harvest amount by 6 in 10 seconds
+                if (!isGrowing) {
+                    startGrowing(5000, 6)
                 }
             } else {
                 // Initialize the data
@@ -113,8 +117,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-//        // Automatically increase harvest amount by 6 in 10 seconds
-//        startGrowing(10000, 6)
     }
 
     override fun onDestroyView() {
@@ -386,14 +388,28 @@ class HomeFragment : Fragment() {
         return fruitList.filter { it.id == id }[0]
     }
 
-//    // Increase amount after a fixed time
-//    private fun startGrowing(fixedTime: Long = 5000, increasingAmount: Int) {
-//        Timer().scheduleAtFixedRate(object : TimerTask() {
-//            override fun run() {
-//                Log.d("Fruit", "Heeeeeee")
-//                landViewModel.grow(increasingAmount)
-//
-//            }
-//        }, 0, fixedTime)
-//    }
+    // Increase amount after a fixed time
+    private fun startGrowing(fixedTime: Long = 10000, increasingAmount: Int) {
+        Timer().scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                isGrowing = true
+                landList.forEach {
+                    val newHarvestAmount = it.harvestAmount + increasingAmount
+                    val newStatus = if (it.landStatus == "pending") {
+                        "finished"
+                    } else {
+                        it.landStatus
+                    }
+                    landViewModel.updateLand(
+                        landId = it.id,
+                        landName = it.landName,
+                        landStatus = newStatus,
+                        fruitId = it.fruitId.toString(),
+                        harvestAmount = newHarvestAmount.toString()
+                    )
+                }
+                Log.d("Fruit", "Loop")
+            }
+        }, 0, fixedTime)
+    }
 }

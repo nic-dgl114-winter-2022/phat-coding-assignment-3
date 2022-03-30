@@ -60,12 +60,6 @@ class LandViewModel(private val landDao: LandDao) : ViewModel() {
         )
     }
 
-    fun grow(amount: Int) {
-        viewModelScope.launch {
-            landDao.grow(amount)
-        }
-    }
-
     fun harvestFruit(
         landId: Int,
         landName: String,
