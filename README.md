@@ -13,6 +13,8 @@ Time Spent: 2-3 days
 # Introduction
 This is an upgraded version of the coding assignment 2. I keep the idea of making a game in which the player harvests the fruits and sell them to the store. 
 
+Every 5 seconds, the amount of the fruits within the land increases by 6. The player tap the land to collect the fruits and can sell them in the **Market**.
+
 The game contains three screens:
 
 - **Home screen**
