@@ -209,7 +209,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:src="@drawable/orange"
+        android:src="@drawable/mango"
         app:layout_constraintEnd_toEndOf="@+id/land_5"
         app:layout_constraintStart_toStartOf="@id/land_5"
         app:layout_constraintTop_toTopOf="@+id/land_5" />

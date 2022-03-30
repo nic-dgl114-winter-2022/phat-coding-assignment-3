@@ -77,7 +77,7 @@ class InventoryFragment : Fragment() {
     }
 
     private fun addNewFruit() {
-        viewModel.addNewFruit("Apple", R.drawable.apple.toString(), "3", "10")
+//        viewModel.addNewFruit("Apple", R.drawable.apple.toString(), "3", "10")
 //        Log.d("Fruit", "Apple")
 //        Log.d("Fruit", R.drawable.apple.toString())
 //        Log.d("Fruit", "3")
