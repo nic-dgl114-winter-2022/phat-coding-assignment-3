@@ -10,13 +10,13 @@ class LandViewModel(private val landDao: LandDao) : ViewModel() {
     *   Initialize data for Land
     * */
     fun initializeLands() {
-        addNewLand("Land #1", "finished", "1", "6")
-        addNewLand("Land #2", "pending", "2", "11")
-        addNewLand("Land #3", "finished", "3", "8")
-        addNewLand("Land #4", "pending", "4", "20")
-        addNewLand("Land #5", "pending", "5", "15")
+        addNewLand("Land #1", "finished", "1", "16")
+        addNewLand("Land #2", "finished", "2", "11")
+        addNewLand("Land #3", "finished", "3", "18")
+        addNewLand("Land #4", "finished", "4", "20")
+        addNewLand("Land #5", "finished", "5", "15")
         addNewLand("Land #6", "finished", "6", "30")
-        addNewLand("Land #7", "pending", "7", "19")
+        addNewLand("Land #7", "finished", "7", "29")
         addNewLand("Land #8", "finished", "8", "21")
         addNewLand("Land #9", "finished", "9", "10")
     }

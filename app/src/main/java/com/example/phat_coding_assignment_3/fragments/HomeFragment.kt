@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
         // Create all fruits
 //        fruitViewModel.initializeFruits()
 //        landViewModel.initializeLands()
-        userViewModel.initializeUsers()
+//        userViewModel.initializeUsers()
     }
 
     override fun onCreateView(
