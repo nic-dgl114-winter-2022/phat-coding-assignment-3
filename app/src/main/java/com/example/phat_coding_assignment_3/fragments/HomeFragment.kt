@@ -357,7 +357,6 @@ class HomeFragment : Fragment() {
         )
 
         val harvestedFruit = findFruitById(land.fruitId)
-        Log.d("Fruit", harvestedFruit.toString())
         // Update stock
         fruitViewModel.updateFruit(
             fruitId = harvestedFruit.id,

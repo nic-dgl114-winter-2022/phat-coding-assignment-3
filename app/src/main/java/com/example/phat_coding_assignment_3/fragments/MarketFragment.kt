@@ -7,16 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.phat_coding_assignment_3.R
-import com.example.phat_coding_assignment_3.adapters.InventoryAdapter
 import com.example.phat_coding_assignment_3.adapters.MarketAdapter
 import com.example.phat_coding_assignment_3.data.MainApplication
 import com.example.phat_coding_assignment_3.data.fruit.Fruit
 import com.example.phat_coding_assignment_3.data.user.User
-import com.example.phat_coding_assignment_3.databinding.FragmentInventoryBinding
 import com.example.phat_coding_assignment_3.databinding.FragmentMarketBinding
 import com.example.phat_coding_assignment_3.view_models.FruitViewModel
 import com.example.phat_coding_assignment_3.view_models.FruitViewModelFactory
@@ -76,7 +72,11 @@ class MarketFragment : Fragment() {
         // Set up recycler view
         recyclerView = binding.marketRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = MarketAdapter()
+
+        var adapter = MarketAdapter { fruit: Fruit, sellingAmount: String ->
+            // Pass sell function to adapter
+            sellFruit(fruit, sellingAmount)
+        }
         recyclerView.adapter = adapter
 
         // Observe all users
@@ -89,12 +89,13 @@ class MarketFragment : Fragment() {
         fruitViewModel.allFruits.observe(this.viewLifecycleOwner) { fruits ->
             fruits.let {
                 adapter.submitList(it)
-            }
-            // Copy the list to handle the selling
-            fruitList = fruits
 
-            // Calculate total value and display it
-            calculateTotalValue(fruits)
+                // Calculate total value and display it
+                calculateTotalValue(it)
+
+                // Copy the list to handle the selling
+                fruitList = it
+            }
 
             // Listener for "Sell all" button
             if (totalValue > 0) {
@@ -108,19 +109,44 @@ class MarketFragment : Fragment() {
         }
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    private fun sellFruit(fruit: Fruit, sellingAmount: String) {
+        val _sellingAmount: Int = if (sellingAmount == "" || sellingAmount == "0") {
+            0
+        } else {
+            sellingAmount.toInt()
+        }
+        val totalMoney = fruit.fruitPrice * _sellingAmount
+        val remainingAmount = fruit.fruitQuantityInStock - _sellingAmount
+
+        // Update stock
+        fruitViewModel.updateFruit(
+            fruitId = fruit.id,
+            fruitName = fruit.fruitName,
+            fruitImageResourceId = fruit.fruitImageResourceId.toString(),
+            fruitPrice = fruit.fruitPrice.toString(),
+            fruitCount = remainingAmount.toString()
+        )
+
+        // Update money
+        val money = player.money + totalMoney
+        userViewModel.updateUser(player.id, money)
+
+    }
+
     private fun calculateTotalValue(fruits: List<Fruit>) {
+        var _totalValue = 0
         fruits.forEach {
-            totalValue += it.fruitPrice * it.fruitQuantityInStock
+            _totalValue += it.fruitPrice * it.fruitQuantityInStock
         }
 
         // Display total value
-        binding.totalSellAmount.text = totalValue.toString()
+        totalValue = _totalValue
+        binding.totalSellAmount.text = _totalValue.toString()
     }
 
 
