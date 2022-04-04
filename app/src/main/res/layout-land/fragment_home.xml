@@ -8,17 +8,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/property_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/market_image"
             android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_margin="16dp"
+            android:layout_height="90dp"
+            android:layout_margin="8dp"
             android:src="@drawable/market"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,11 +38,12 @@
         <ImageView
             android:id="@+id/inventory_image"
             android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="16dp"
+            android:layout_height="90dp"
+            android:layout_margin="8dp"
             android:src="@drawable/inventory"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/market_title"
+            app:layout_constraintTop_toBottomOf="@+id/market_title"
+            app:layout_constraintEnd_toEndOf="@+id/market_title"/>
 
         <TextView
             android:id="@+id/inventory_title"
@@ -55,6 +56,32 @@
             app:layout_constraintEnd_toEndOf="@id/inventory_image"
             app:layout_constraintStart_toStartOf="@+id/inventory_image"
             app:layout_constraintTop_toBottomOf="@+id/inventory_image" />
+
+        <!-- Money -->
+        <ImageView
+            android:id="@+id/money_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="#FFEE58"
+            android:backgroundTint="#FFCA28"
+            android:src="@drawable/ic_baseline_monetization_on_24"
+            app:layout_constraintBottom_toBottomOf="@+id/money_amount"
+            app:layout_constraintEnd_toStartOf="@+id/money_amount"
+            app:layout_constraintTop_toTopOf="@+id/money_amount" />
+
+        <TextView
+            android:id="@+id/money_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            tools:text="1000"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/inventory_title"
+            app:layout_constraintTop_toBottomOf="@+id/inventory_title"
+            app:layout_constraintEnd_toEndOf="@+id/inventory_title"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,7 +96,7 @@
         android:src="@drawable/green_land"
         app:layout_constraintBottom_toBottomOf="@id/land_2"
         app:layout_constraintEnd_toStartOf="@id/land_2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/property_layout"
         app:layout_constraintTop_toTopOf="@id/land_2" />
 
     <ImageView
@@ -167,7 +194,7 @@
         android:src="@drawable/green_land"
         app:layout_constraintBottom_toBottomOf="@+id/land_5"
         app:layout_constraintEnd_toStartOf="@+id/land_5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/property_layout"
         app:layout_constraintTop_toTopOf="@+id/land_5" />
 
     <ImageView
@@ -201,8 +228,8 @@
         android:src="@drawable/soil_land"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/property_layout" />
+        app:layout_constraintStart_toEndOf="@+id/property_layout"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/land_5_fruit_image"
@@ -266,7 +293,7 @@
         android:layout_margin="16dp"
         android:src="@drawable/green_land"
         app:layout_constraintEnd_toStartOf="@id/land_5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/property_layout"
         app:layout_constraintTop_toBottomOf="@id/land_4"
         />
 
@@ -355,27 +382,4 @@
         app:layout_constraintStart_toStartOf="@id/land_9_fruit_image"
         app:layout_constraintTop_toBottomOf="@+id/land_9_fruit_image" />
 
-    <!-- Money -->
-    <ImageView
-        android:id="@+id/money_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="#FFEE58"
-        android:backgroundTint="#FFCA28"
-        android:src="@drawable/ic_baseline_monetization_on_24"
-        app:layout_constraintBottom_toBottomOf="@+id/money_amount"
-        app:layout_constraintEnd_toStartOf="@+id/money_amount"
-        app:layout_constraintTop_toTopOf="@+id/money_amount" />
-
-    <TextView
-        android:id="@+id/money_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        tools:text="1000"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

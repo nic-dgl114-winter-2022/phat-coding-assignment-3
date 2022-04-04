@@ -408,7 +408,6 @@ class HomeFragment : Fragment() {
                         harvestAmount = newHarvestAmount.toString()
                     )
                 }
-                Log.d("Fruit", "Loop")
             }
         }, 0, fixedTime)
     }
