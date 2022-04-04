@@ -95,7 +95,7 @@ class HomeFragment : Fragment() {
                     loadLand(land)
                 }
 
-                // Automatically increase harvest amount by 6 in 10 seconds
+                // Automatically increase harvest amount by 6 in 5 seconds ;)
                 if (!isGrowing) {
                     startGrowing(5000, 6)
                 }
@@ -124,12 +124,20 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+//    I can see how you are sort of forced into the pattern below, but it's definitely awkward and
+//    fairly repetitive. At the very least you should break out all the common code from each of the
+//    case blocks to reduce overall repetitiveness.
+
     // Load UI based on data
     private fun loadLand(land: Land) {
-
+        findFruitById(land.id)
+        findFruitById(land.fruitId)
         when (land.id) {
             1 -> { // Strawberry
-                binding.land1FruitImage.setImageResource(R.drawable.strawberry)
+                // I think it's weird that this doesn't work? But I could be misunderstanding your
+                // approach here. Either way, it would be good to refer to the data in the entity
+                // rather than to the image resource directly
+                binding.land1FruitImage.setImageResource(fruitList[land.fruitId].fruitImageResourceId)
                 binding.land1Quantity.text = land.harvestAmount.toString()
 
                 val landType = if (land.landStatus == "pending") {

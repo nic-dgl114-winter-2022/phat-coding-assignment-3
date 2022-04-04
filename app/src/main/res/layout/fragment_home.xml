@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
+<!--    Lots of warnings in this file that should be addressed for usability purposes -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/property_layout"
         android:layout_width="match_parent"
